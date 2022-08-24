@@ -8,6 +8,41 @@
     <title><%= title%></title>
   </head>
   <body>
-    <h1>Home</h1>
+    <h1>TODO App</h1>
+    <form action="/create" method="post">
+      <label for="description">Description</label>
+      <input type="text" name="description" id="description" required />
+      <label for="category">Category</label>
+      <select name="category" id="category" required>
+        <option value="" disabled selected>Choose a Category</option>
+        <option value="personal">Personal</option>
+        <option value="work">Work</option>
+        <option value="school">School</option>
+        <option value="cleaning">Cleaning</option>
+        <option value="other">Other</option>
+      </select>
+      <label for="due_date">Due Date</label>
+      <input type="date" name="due_date" id="due_date" required /><br />
+      <button type="submit">Add Task</button>
+    </form>
+    <form action="/deleteTasks" method="post">
+      <button type="submit">Delete Tasks</button><br />
+      <% console.log(data) %> <% for(let i of data){ %>
+      <input
+        type="checkbox"
+        name="list"
+        id="<%= i.description %>"
+        value="<%= i.description %>"
+      />
+      <label for="<%= i.description %>">
+        <div>
+          <h3><%= i.description %></h3>
+          <%= i.dueDate %>
+          <div><%= i.category %></div>
+        </div></label
+      >
+      <hr />
+      <% } %>
+    </form>
   </body>
 </html>
